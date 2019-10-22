@@ -89,7 +89,7 @@ var DaemonCmd = &cli.Command{
 			genesis,
 
 			node.Override(node.SetApiEndpointKey, func(lr repo.LockedRepo) error {
-				apima, err := multiaddr.NewMultiaddr("/ip4/127.0.0.1/tcp/" + cctx.String("api"))
+				apima, err := multiaddr.NewMultiaddr("/ip4/0.0.0.0/tcp/" + cctx.String("api"))
 				if err != nil {
 					return err
 				}
@@ -106,6 +106,6 @@ var DaemonCmd = &cli.Command{
 		}
 
 		// TODO: properly parse api endpoint (or make it a URL)
-		return serveRPC(api, stop, "127.0.0.1:"+cctx.String("api"))
+		return serveRPC(api, stop, "0.0.0.0:"+cctx.String("api"))
 	},
 }
