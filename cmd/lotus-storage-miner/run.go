@@ -71,7 +71,7 @@ var runCmd = &cli.Command{
 			node.Repo(r),
 
 			node.Override(node.SetApiEndpointKey, func(lr repo.LockedRepo) error {
-				apima, err := multiaddr.NewMultiaddr("/ip4/127.0.0.1/tcp/" + cctx.String("api"))
+				apima, err := multiaddr.NewMultiaddr("/ip4/0.0.0.0/tcp/" + cctx.String("api"))
 				if err != nil {
 					return err
 				}
@@ -106,7 +106,7 @@ var runCmd = &cli.Command{
 
 		http.Handle("/rpc/v0", ah)
 
-		srv := &http.Server{Addr: "127.0.0.1:" + cctx.String("api"), Handler: http.DefaultServeMux}
+		srv := &http.Server{Addr: "0.0.0.0:" + cctx.String("api"), Handler: http.DefaultServeMux}
 
 		sigChan := make(chan os.Signal, 2)
 		go func() {

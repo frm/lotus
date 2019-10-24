@@ -58,7 +58,7 @@ var runCmd = &cli.Command{
 	Flags: []cli.Flag{
 		&cli.StringFlag{
 			Name:  "front",
-			Value: "127.0.0.1:7777",
+			Value: "0.0.0.0:7777",
 		},
 		&cli.StringFlag{
 			Name: "from",
